@@ -20,6 +20,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libssl-dev \
   && rm -rf /var/lib/apt/lists/*
 
+# Install CMake v3.29.2
+RUN wget http://www.cmake.org/files/v3.29/cmake-3.29.2.tar.gz \
+&& tar xf cmake-3.29.2.tar.gz \
+&& chmod +x ./cmake-3.29.2/configure \
+&& ./cmake-3.29.2/configure \
+&& make install
+
 # Install clang 17
 RUN wget https://apt.llvm.org/llvm.sh
 RUN chmod +x llvm.sh
@@ -33,9 +40,5 @@ RUN apt-get install --no-install-recommends -y \
  clang-tidy-17 \
  && rm -rf /var/lib/apt/lists/*
 
-# Install CMake v3.29.2
-RUN wget http://www.cmake.org/files/v3.29/cmake-3.29.2.tar.gz \
- && tar xf cmake-3.29.2.tar.gz \
- && chmod +x ./cmake-3.29.2/configure \
- && ./cmake-3.29.2/configure \
- && make install
+ WORKDIR /project
+ 
