@@ -26,10 +26,10 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang${Version}.Dockerfile
+        file: clang$Version.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang${Version}
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang${Version}
+        tags: kbryon/cpp-build-envs:clang$Version
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
         cache-to: type=inline
   
   build-clang17:
@@ -50,10 +50,10 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang${Version}.Dockerfile
+        file: clang$Version.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang${Version}
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang${Version}
+        tags: kbryon/cpp-build-envs:clang$Version
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
         cache-to: type=inline
 
   build-clang18:
@@ -74,9 +74,9 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang${Version}.Dockerfile
+        file: clang$Version.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang${Version}
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang${Version}
+        tags: kbryon/cpp-build-envs:clang$Version
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
         cache-to: type=inline
 
