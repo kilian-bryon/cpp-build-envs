@@ -1,2 +1,2 @@
-# cpp-build-envs
-C++ Building Environments
+# C++ Building Environments
+Docker containers for building C++ programs.
