@@ -28,6 +28,26 @@ jobs:
         cache-from: type=registry,ref=kbryon/cpp-build-envs:cmake3.29.2
         cache-to: type=inline
 
+  build-cmake_3_29_2:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - 
+      name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    -
+      name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        file: cmake3_29_2.Dockerfile
+        push: true
+        tags: kbryon/cpp-build-envs:cmake3.29.2
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:cmake3.29.2
+        cache-to: type=inline
+
   build-clang16:
 
     runs-on: ubuntu-22.04
@@ -47,10 +67,10 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang$Version.Dockerfile
+        file: clang16.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang$Version
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
+        tags: kbryon/cpp-build-envs:clang16
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang16
         cache-to: type=inline
   
   build-clang17:
@@ -72,15 +92,16 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang$Version.Dockerfile
+        file: clang17.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang$Version
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
+        tags: kbryon/cpp-build-envs:clang17
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang17
         cache-to: type=inline
 
   build-clang18:
 
     runs-on: ubuntu-22.04
+    needs: build-cmake_3_29_2
     needs: build-cmake_3_29_2
 
     env:
@@ -97,9 +118,9 @@ jobs:
       name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: clang$Version.Dockerfile
+        file: clang18.Dockerfile
         push: true
-        tags: kbryon/cpp-build-envs:clang$Version
-        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang$Version
+        tags: kbryon/cpp-build-envs:clang18
+        cache-from: type=registry,ref=kbryon/cpp-build-envs:clang18
         cache-to: type=inline
 
