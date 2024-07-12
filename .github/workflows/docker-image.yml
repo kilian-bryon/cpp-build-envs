@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file clang17.Dockerfile --tag kbryon/cpp-build-envs:clang17
+    - name: Push the Docker image
+      run: docker push kbryon/cpp-build-envs:clang17
